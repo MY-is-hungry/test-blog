@@ -21,7 +21,12 @@
   </div>
 
   <div>
+    <%= form.label :tag_list, "Tags (comma or space separated)" %><br>
+    <%= form.text_field :tag_list, value: @post.tag_list, placeholder: "ruby, rails" %>
+    <small>例: ruby rails web</small>
+  </div>
+
+  <div>
     <%= form.submit %>
   </div>
 <% end %>
-

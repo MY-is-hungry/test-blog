@@ -1,0 +1,19 @@
+<% content_for :title, "##{@tag.name}" %>
+
+<h1>Tag: <%= @tag.name %></h1>
+
+<% if @posts.any? %>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <h3><%= link_to post.title, post %></h3>
+        <small><%= l(post.created_at, format: :short) %></small>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>No posts for this tag yet.</p>
+<% end %>
+
+<p><%= link_to "Back", posts_path %></p>
+

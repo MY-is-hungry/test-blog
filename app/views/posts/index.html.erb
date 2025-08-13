@@ -15,6 +15,15 @@
           <p><%= truncate(strip_tags(post.body.to_s), length: 140) %></p>
           <small><%= l(post.created_at, format: :short) %></small>
           <div>
+            <% if post.tags.any? %>
+              <small>
+                Tags:
+                <% post.tags.order(:name).each do |tag| %>
+                  <%= link_to "##{tag.name}", tag_path(tag.name) %>
+                <% end %>
+              </small>
+              <br>
+            <% end %>
             <%= link_to "Edit", edit_post_path(post) %> |
             <%= link_to "Delete", post, data: { turbo_method: :delete, turbo_confirm: "Are you sure?" } %>
           </div>
@@ -25,4 +34,3 @@
     <p>No posts yet.</p>
   <% end %>
 </div>
-

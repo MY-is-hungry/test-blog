@@ -6,10 +6,19 @@
     <%= simple_format(@post.body) %>
   </div>
   <p><small>Published <%= time_ago_in_words(@post.created_at) %> ago</small></p>
+  <% if @post.tags.any? %>
+    <p>
+      <small>
+        Tags:
+        <% @post.tags.order(:name).each do |tag| %>
+          <%= link_to "##{tag.name}", tag_path(tag.name) %>
+        <% end %>
+      </small>
+    </p>
+  <% end %>
 </article>
 
 <p>
   <%= link_to "Edit", edit_post_path(@post) %> |
   <%= link_to "Back", posts_path %>
 </p>
-
